@@ -5,6 +5,6 @@ include:
 
 networks:
   labcli:
-    # external: true
+    external: true
     name: labcli
     driver: bridge
