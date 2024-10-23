@@ -10,7 +10,7 @@ services:
       - ./loki/rules/:/rules/fake/
       - loki_data:/loki:rw
     env_file:
-      - ../../.env
+      - ../../../.env
     networks:
       - labcli
     profiles:
@@ -36,7 +36,7 @@ services:
       - ./prometheus/rules/:/etc/prometheus/rules/
       - prometheus_data:/prometheus
     env_file:
-      - ../../.env
+      - ../../../.env
     networks:
       - labcli
     profiles:

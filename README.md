@@ -1,69 +1,53 @@
-[![Open the Example in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidban77/labcli?quickstart=1&devcontainer_path=.devcontainer%2Fexample%2Fdevcontainer.json)
-# LabCLI
+[![Open the Example in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/davidban77/netdev-labs?quickstart=1)
+# NetDev Labs
 
-LabCLI is a command line interface for managing lab environments. It is designed to be used as is or imported into other scripts or CLI applications.
+Labs for Network Development and Observaility.
 
-## Installation
+## Setup the Environment
 
-To get started you can install the package from PyPI.
-
-```bash
-pip install labcli
-```
+To get started you can clone and open this in a [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) or open up the environment directly in GitHub Codespaces with the button above.
 
 ## Usage
 
-To get started you can use the `labcli` command:
+To get started you can use the `lab` command:
 
 ```bash
-labcli --help
+lab --help
 ```
 
 It comes with builtin commands to manage [containerlab](https://containerlab.dev/) and [docker compose](https://docs.docker.com/compose/) environments.
 
 ```bash
-labcli containerlab --help
-labcli docker --help
+lab containerlab --help
+lab docker --help
 ```
 
-### Example
+But to simplify the usage of the lab environments you can setup a complete environment for the scenario using the `lab create` command.
 
-To see it in action, this repository comes with an `example` directory that contains a `docker-compose.yml` file and a `containerlab` directory. These have been created to demonstrate how to use `labcli` to manage lab environments.
+```bash
+lab create netobs
+```
+
+### Labs structure
+
+Each `lab` contains a `containerlab/` and `docker-compose.yml` directory with the lab environment configuration. These are the basic specifications for the lab environment.
 
 To start the `containerlab` environment:
 
 ```bash
-labcli containerlab start example/containerlab/lab.clab.yml
+labcli containerlab start labs/netobs/containerlab/lab.clab.yml
 ```
 
 To start the `docker compose` environment:
 
 ```bash
-labcli docker start --compose example/docker-compose.yml
+labcli docker start --compose labs/netobs/docker-compose.yml
 ```
 
 > Note: You can also use the `--help` flag to get more information about the commands and their options. For example, with the `--profile` argument you can spin up a docker compose environment for a specific profile of services applied to it:
 >
 > ```bash
-> labcli docker start --compose example/docker-compose.yml --profile collector
+> labcli docker start --compose labs/netobs/docker-compose.yml --profile collector
 > ```
 >
 > This will start the `docker-compose.yml` environment with the `collector` profile.
-
-## Open in GitHub Codespaces
-
-You can open this repository in GitHub Codespaces by clicking on the badge at the top of this README. This will open a new Codespace with the repository and the development environment already set up.
-
-This will give you a feel of the `labcli` in action and how it can be used to manage lab environments.
-
-## Development
-
-To install the development environment you need to have [uv](https://docs.astral.sh/uv) installed.
-
-```bash
-git clone https://github.com/davidban77/labcli.git
-cd labcli
-uv sync
-```
-
-This will create a virtual environment and install the required dependencies.
